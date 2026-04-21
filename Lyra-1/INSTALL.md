@@ -18,6 +18,7 @@ ln -sf $CONDA_PREFIX/lib/python3.10/site-packages/nvidia/*/include/* $CONDA_PREF
 # Install Transformer engine.
 pip install transformer-engine[pytorch]==1.12.0
 # Install Apex for inference.
+# Note: set MAX_JOBS to limit parallel compile workers if you run into OOM during build (e.g. MAX_JOBS=4).
 git clone https://github.com/NVIDIA/apex
 CUDA_HOME=$CONDA_PREFIX pip install -v --disable-pip-version-check --no-cache-dir --no-build-isolation --config-settings "--build-option=--cpp_ext" --config-settings "--build-option=--cuda_ext" ./apex
 # Install MoGe for inference.
@@ -31,7 +32,7 @@ You can test the environment setup for inference with
 CUDA_HOME=$CONDA_PREFIX PYTHONPATH=$(pwd) python scripts/test_environment.py
 ```
 
->personal):** The Apex build step can take 15–30 minutes depending on your GPU and CPU count. You can speed it up by setting `MAX_JOBS` before the pip install command, e.g. `MAX_JOBS=8 CUDA_HOME=$CONDA_PREFIX pip install ...`.
+>**Tip (personal note):** The Apex build step can take 15–30 minutes depending on your GPU and CPU count. You can speed it up by setting `MAX_JOBS` before the pip install command, e.g. `MAX_JOBS=8 CUDA_HOME=$CONDA_PREFIX pip install ...`. On my machine (RTX 3090, 16-core CPU) `MAX_JOBS=8` cut the build time roughly in half.
 
 ### Download Cosmos-Predict1 tokenizer
 
@@ -60,12 +61,4 @@ checkpoints/
 └── Cosmos-Tokenize1-DV4x8x8-360p
 ```
 
-Under the checkpoint repository `checkpoints/<model-name>`, we provide the encoder, decoder, the full autoencoder in TorchScript (PyTorch JIT mode) and the native PyTorch checkpoints. For instance for `Cosmos-Tokenize1-CV8x8x8-720p` model:
-```bash
-├── checkpoints/
-│   ├── Cosmos-Tokenize1-CV8x8x8-720p/
-│   │   ├── encoder.jit
-│   │   ├── decoder.jit
-│   │   ├── autoencoder.jit
-│   │   ├── model.pt
-```
+Under the checkpoint repository `checkpoints/<model-name>`, we provide the encoder, decoder, the full autoencoder in TorchScript (PyTorch JIT mode) and the native PyTorch check
