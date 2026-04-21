@@ -31,6 +31,8 @@ You can test the environment setup for inference with
 CUDA_HOME=$CONDA_PREFIX PYTHONPATH=$(pwd) python scripts/test_environment.py
 ```
 
+>personal):** The Apex build step can take 15–30 minutes depending on your GPU and CPU count. You can speed it up by setting `MAX_JOBS` before the pip install command, e.g. `MAX_JOBS=8 CUDA_HOME=$CONDA_PREFIX pip install ...`.
+
 ### Download Cosmos-Predict1 tokenizer
 
 1. Generate a [Hugging Face](https://huggingface.co/settings/tokens) access token (if you haven't done so already). Set the access token to `Read` permission (default is `Fine-grained`).
@@ -67,24 +69,3 @@ Under the checkpoint repository `checkpoints/<model-name>`, we provide the encod
 │   │   ├── autoencoder.jit
 │   │   ├── model.pt
 ```
-
-### Download GEN3C checkpoints
-
-1. Generate a [Hugging Face](https://huggingface.co/settings/tokens) access token (if you haven't done so already). Set the access token to `Read` permission (default is `Fine-grained`).
-
-2. Log in to Hugging Face with the access token:
-   ```bash
-   huggingface-cli login
-   ```
-
-3. Download the GEN3C model weights from [Hugging Face](https://huggingface.co/nvidia/GEN3C-Cosmos-7B):
-   ```bash
-   CUDA_HOME=$CONDA_PREFIX PYTHONPATH=$(pwd) python scripts/download_gen3c_checkpoints.py --checkpoint_dir checkpoints
-   ```
-
-### Download Lyra checkpoints
-
-1. Download the Lyra model weights from [Hugging Face](https://huggingface.co/nvidia/Lyra):
-   ```bash
-   CUDA_HOME=$CONDA_PREFIX PYTHONPATH=$(pwd) python scripts/download_lyra_checkpoints.py --checkpoint_dir checkpoints
-   ```
