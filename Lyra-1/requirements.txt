@@ -1,0 +1,64 @@
+# Core dependencies for Lyra-1 training and inference
+
+# Deep learning framework
+torch>=2.0.0
+torchvision>=0.15.0
+torchaudio>=2.0.0
+
+# Hugging Face ecosystem
+transformers>=4.37.0
+datasets>=2.16.0
+accelerate>=0.26.0
+peft>=0.8.0
+trl>=0.7.10
+
+# Tokenization
+tokenizers>=0.15.0
+sentencepiece>=0.1.99
+
+# Vision / multimodal
+pillow>=10.0.0
+open-clip-torch>=2.23.0
+timm>=0.9.12
+
+# Audio processing
+librosa>=0.10.1
+soundfile>=0.12.1
+
+# Training utilities
+ninja>=1.11.1
+einops>=0.7.0
+flash-attn>=2.4.0; sys_platform != 'darwin'
+
+# Quantization
+bitsandbytes>=0.41.3
+
+# Data processing
+numpy>=1.24.0
+pandas>=2.0.0
+scipy>=1.11.0
+
+# Evaluation
+rouge-score>=0.1.2
+nltk>=3.8.1
+pycocoevalcap>=1.2
+
+# Distributed training
+deepspeed>=0.12.6
+
+# Logging and experiment tracking
+wandb>=0.16.0
+tensorboard>=2.14.0
+
+# Utilities
+tqdm>=4.66.0
+pyyaml>=6.0.1
+omegaconf>=2.3.0
+hydra-core>=1.3.2
+requests>=2.31.0
+httpx>=0.25.0
+
+# Code quality (optional, for development)
+# black>=23.0.0
+# isort>=5.12.0
+# flake8>=6.0.0
