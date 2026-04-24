@@ -16,3 +16,5 @@ tpu_env: []
 tpu_use_cluster: false
 tpu_use_sudo: false
 use_cpu: false
+# Note: set mixed_precision to 'no' if experiencing NaN losses during training
+# mixed_precision: 'no'
