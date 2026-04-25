@@ -18,3 +18,5 @@ tpu_use_sudo: false
 use_cpu: false
 # Note: set mixed_precision to 'no' if experiencing NaN losses during training
 # mixed_precision: 'no'
+# Note: set debug: true to get more verbose logging when troubleshooting
+# hangs or unexpected behavior during training runs
